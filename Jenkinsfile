@@ -3,7 +3,7 @@ node {
         git url: 'https://github.com/jfrogdev/project-examples.git'
 
     stage 'Artifactory configuration'
-        def server = Artifactory.newServer url: "http://10.1.20.38/:8081/artifactory", username:"admin", password:"password"
+        def server = Artifactory.newServer url: "http://10.1.20.38:8081/artifactory", username:"admin", password:"password"
         def rtMaven  = Artifactory.newMavenBuild()
         rtMaven .tool = "M3" // Tool name from Jenkins configuration
         rtMaven .deployer releaseRepo:'libs-release-local', snapshotRepo:'libs-snapshot-local', server: server
