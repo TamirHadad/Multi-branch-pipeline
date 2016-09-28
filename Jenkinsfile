@@ -3,9 +3,9 @@ node {
         git url: 'https://github.com/jfrogdev/project-examples.git'
 
     stage 'Artifactory configuration'
-        def server = Artifactory.newServer url: SERVER_URL, credentialsId: CREDENTIALS
+        def server = Artifactory.newServer url: "http://localhost:8081/artifactory", username:"admin", password:"password"
         def artifactoryMaven = Artifactory.newMavenBuild()
-        artifactoryMaven.tool = MAVEN_TOOL // Tool name from Jenkins configuration
+        artifactoryMaven.tool = "M3" // Tool name from Jenkins configuration
         artifactoryMaven.deployer releaseRepo:'libs-release-local', snapshotRepo:'libs-snapshot-local', server: server
         artifactoryMaven.resolver releaseRepo:'libs-release', snapshotRepo:'libs-snapshot', server: server
         def buildInfo = Artifactory.newBuildInfo()
